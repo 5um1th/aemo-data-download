@@ -4,6 +4,9 @@ var axios = require('axios');
 var StringDecoder = require('string_decoder').StringDecoder;
 var decoder = new StringDecoder('utf8');
 var _ = require("lodash");
+var bucketName = 'kuro-data-in';
+var dataUrl = 'http://www.nemweb.com.au/mms.GRAPHS/GRAPHS/GRAPH_30NSW1.csv';
+var downloadFileName = 'aemo-data-current-nsw.csv';
 
 var putObject = function(bucket, key, body) {
     return new bluebirdPromise(function(resolve, reject) {
@@ -28,10 +31,10 @@ exports.handler = function(event, context) {
     'use strict';
 
     axios
-        .get('http://www.nemweb.com.au/mms.GRAPHS/GRAPHS/GRAPH_30NSW1.csv')
+        .get(dataUrl)
         .then(function(response) {
             var aemodata = response.data
 
-            putObject('kuro-data-in', 'aemo-data-current-nsw.csv', aemodata);
+            putObject(bucketName, downloadFileName, aemodata);
         })
 }
