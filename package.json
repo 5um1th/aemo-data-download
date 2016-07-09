@@ -1,0 +1,28 @@
+{
+  "name": "aemo-data-download",
+  "version": "1.0.0",
+  "description": "AEMO Data downloader",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/5um1th/aemo-data-download.git"
+  },
+  "private": true,
+  "files": [
+    "*.js"
+  ],
+  "scripts": {
+    "start": "claudia create --name aemo-data-download --region ap-southeast-2 --handler main.handler --policies policies",
+    "test": "claudia test-lambda",
+    "schedule": "claudia add-scheduled-event --event test-event.json --name aemo-data-download-schedule --rate '1 hour'",
+    "deploy": "claudia update"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.4.6",
+    "axios": "^0.12.0",
+    "bluebird": "^3.4.1",
+    "lodash": "^4.13.1"
+  },
+  "devDependencies": {
+    "claudia": "^1.x"
+  }
+}

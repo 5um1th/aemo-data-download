@@ -1,0 +1,7 @@
+{
+  "lambda": {
+    "role": "aemo-data-download-executor",
+    "name": "aemo-data-download",
+    "region": "ap-southeast-2"
+  }
+}
